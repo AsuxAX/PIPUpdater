@@ -2,7 +2,7 @@ import json
 import os
 from webbrowser import open as webopen
 
-import requests
+import httpx
 
 current_version = "v0.1" 
 
@@ -11,7 +11,7 @@ print("PIPUpdater | v0.1 | Made by AsuxAX")
 # Update checking
 print("\n[*] Checking for updates...")
 try:
-    latest_version = requests.get("https://api.github.com/repos/AsuxAX/PIPUpdater/releases/latest").json()["tag_name"]
+    latest_version = httpx.get("https://api.github.com/repos/AsuxAX/PIPUpdater/releases/latest").json()["tag_name"]
 except Exception as err:
     print(f"[!] An error occurred while checking for the latest version. Skipping update checking...\n[?] Error: {err.__class__.__name__}: {err}")
     latest_version = None
@@ -37,18 +37,18 @@ if len(outdated_packages) != 0:
     while True:
         choice = input(f"[!] Found {len(outdated_packages)} outdated package(s).\nDo you want to continue? (y/n) ").lower()
         if choice == "y":
-            
             # PIP package updating
             for package_dict in outdated_packages:
                 print("\n[!] Updating", package_dict["name"], "to version", package_dict["latest_version"], "from version", package_dict["version"], "...")
                 os.system("python -m pip install -U " + package_dict["name"])
-            print("\n[!] Successfully updated all packages! Quitting program...")
-            exit()
+            print("\n[!] Successfully updated all packages!")
+            input("\n\nPress any key to exit the program.")
+            break
         elif choice == "n":
-            print("[!] Quitting program...")
-            exit()
+            input("\n\nPress any key to exit the program.")
+            break
         else:
             print("Invalid option.")
 else:
-    print("[!] Found no outdated packages. Quitting program...")
-    exit()
+    print("[!] Found no outdated packages.")
+    input("\n\nPress any key to exit the program.")

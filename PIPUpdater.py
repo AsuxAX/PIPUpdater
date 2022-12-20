@@ -4,9 +4,9 @@ from webbrowser import open as webopen
 
 import httpx
 
-current_version = "v0.1" 
+current_version = "v0.1.1" 
 
-print("\nPIPUpdater | v0.1 | Made by AsuxAX")
+print("\nPIPUpdater | v0.1.1 | Made by AsuxAX")
 
 # Update checking
 print("\n[*] Checking for updates...")

@@ -6,7 +6,7 @@ import httpx
 
 current_version = "v0.1" 
 
-print("PIPUpdater | v0.1 | Made by AsuxAX")
+print("\nPIPUpdater | v0.1 | Made by AsuxAX")
 
 # Update checking
 print("\n[*] Checking for updates...")
@@ -35,20 +35,21 @@ print("\n[*] Checking for outdated packages...")
 outdated_packages = json.loads(os.popen("python -m pip list --outdated --format json").read())
 if len(outdated_packages) != 0:
     while True:
-        choice = input(f"[!] Found {len(outdated_packages)} outdated package(s).\nDo you want to continue? (y/n) ").lower()
+        choice = input(f"[!] Found {len(outdated_packages)} outdated package(s).\n[?] Do you want to continue? (y/n) ").lower()
         if choice == "y":
             # PIP package updating
             for package_dict in outdated_packages:
-                print("\n[!] Updating", package_dict["name"], "to version", package_dict["latest_version"], "from version", package_dict["version"], "...")
-                os.system("python -m pip install -U " + package_dict["name"])
+                print("\n[*] Updating", package_dict["name"], "to version", package_dict["latest_version"], "from version", package_dict["version"], "\b...")
+                package_update_output = os.popen("python -m pip install -U " + package_dict["name"]).read()
+                print("[!] Successfully updated", package_dict["name"], "to version", package_dict["latest_version"], "\b!")
             print("\n[!] Successfully updated all packages!")
-            input("\n\nPress any key to exit the program.")
+            input("\nPress any key to exit the program.")
             break
         elif choice == "n":
-            input("\n\nPress any key to exit the program.")
+            input("\nPress any key to exit the program.")
             break
         else:
             print("Invalid option.")
 else:
     print("[!] Found no outdated packages.")
-    input("\n\nPress any key to exit the program.")
+    input("\nPress any key to exit the program.")

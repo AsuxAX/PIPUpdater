@@ -4,9 +4,9 @@ from webbrowser import open as webopen
 
 import httpx
 
-current_version = "v0.1.1" 
+current_version = "v0.1.2" 
 
-print("\nPIPUpdater | v0.1.1 | Made by AsuxAX")
+print("\nPIPUpdater | v0.1.2 | Made by AsuxAX")
 
 # Update checking
 print("\n[*] Checking for updates...")
@@ -41,8 +41,11 @@ if len(outdated_packages) != 0:
             for package_dict in outdated_packages:
                 print("\n[*] Updating", package_dict["name"], "to version", package_dict["latest_version"], "from version", package_dict["version"], "\b...")
                 package_update_output = os.popen("python -m pip install -U " + package_dict["name"]).read()
-                print("[!] Successfully updated", package_dict["name"], "to version", package_dict["latest_version"], "\b!")
-            print("\n[!] Successfully updated all packages!")
+                if "ERROR" in package_update_output:
+                    print("[!] An error occurred while trying to update the package.\n[?] Check if the package is installed despite an error by pip using: python -m pip list")
+                else:
+                    print("[!] Successfully updated", package_dict["name"], "to version", package_dict["latest_version"], "from version", package_dict["version"], "\b!")
+            print("\n[!] Updated all packages!")
             input("\nPress any key to exit the program.")
             break
         elif choice == "n":

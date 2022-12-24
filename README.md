@@ -9,6 +9,6 @@ XMR (Monero): `8AmzJx6KkP42A3xU5QLuc4Z8M1Xrh59rUChsKxaX8XQzeDbPeXwnwwW1nYhkimDfE
 **All donations are highly appreciated!**
 
 ## License
-This project is licensed under [GNU GPL Public License v3](https://www.gnu.org/licenses/gpl-3.0.html).
+This project is licensed under the [GNU GPL Public License v3](https://www.gnu.org/licenses/gpl-3.0.html).
 
 ###### Check out my other works: https://github.com/AsuxAX
